@@ -38,7 +38,7 @@ console.log(spinnerElem)
 
 // Risoluzione logica
 //Creo un primo ciclo for che mi stampa le prime 10 mail in pagina
-for(let i = 0; i <= 10 ; i++){
+for (let i = 0; i <= 10; i++) {
     axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((resp) => {
         curMail = resp.data.response
         listElem.innerHTML += `<li>${curMail}</li>`
@@ -50,18 +50,20 @@ rigeneraBtn.addEventListener("click", rigenerazione)
 
 // Creo la funzione che mi ripulisce la lista e poi rigira il ciclo for per generare altre 10 mail e poi stamparle.
 
-function rigenerazione(){
+async function rigenerazione(){
     listElem.classList.add("d-none")
     spinnerElem.classList.remove("d-none")
     listElem.innerHTML = ""
     for(let i = 0; i <= 10 ; i++){
-        axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((resp) => {
+        await axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((resp) => {
             curMail = resp.data.response
             listElem.innerHTML += `<li>${curMail}</li>`
         })
     }
     spinnerElem.classList.add("d-none")
     listElem.classList.remove("d-none")
-    
 }
+
+
+
 
